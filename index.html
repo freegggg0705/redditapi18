@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Image/GIF Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Reddit Image/GIF Viewer</h1>
+        <div id="status-bar"></div>
+        <div id="loading-spinner" style="display: none; text-align: center; margin: 20px;">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+        <div id="confirm-modal" style="display: none;">
+            <div class="modal-content">
+                <p id="confirm-message"></p>
+                <button id="confirm-yes">Continue</button>
+                <button id="confirm-no">Stop</button>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="input-group">
+                <label for="client-id">Client ID:</label>
+                <input type="text" id="client-id" placeholder="Enter Reddit Client ID">
+            </div>
+            <div class="input-group">
+                <label for="client-secret">Client Secret:</label>
+                <input type="text" id="client-secret" placeholder="Enter Reddit Client Secret">
+            </div>
+            <div class="input-group">
+                <label for="subreddit-input">Subreddit/Multireddit:</label>
+                <input type="text" id="subreddit-input" placeholder="e.g., gifs or pics+gifs" value="gifs">
+            </div>
+            <div class="input-group">
+                <label for="excel-file">Upload Subreddits (Excel):</label>
+                <input type="file" id="excel-file" accept=".xlsx">
+            </div>
+            <div class="input-group">
+                <label for="limit-input">Post Limit (1-100):</label>
+                <input type="number" id="limit-input" min="1" max="100" value="5">
+            </div>
+            <div class="input-group">
+                <label>Sort By:</label>
+                <button class="sort-button" data-sort="rising">Rising</button>
+                <button class="sort-button" data-sort="new">New</button>
+                <button class="sort-button" data-sort="best">Best</button>
+                <button class="sort-button" data-sort="top">Top</button>
+            </div>
+            <div class="input-group time-filter" style="display: none;">
+                <label>Time Filter:</label>
+                <button class="time-button" data-time="hour">Hour</button>
+                <button class="time-button" data-time="day">Day</button>
+                <button class="time-button" data-time="week">Week</button>
+                <button class="time-button" data-time="month">Month</button>
+                <button class="time-button" data-time="all">All</button>
+            </div>
+            <div class="input-group">
+                <label>Layout:</label>
+                <button class="layout-button" data-layout="grid">Grid</button>
+                <button class="layout-button" data-layout="columns">Columns</button>
+            </div>
+            <div class="input-group">
+                <label for="columns-slider">Columns (1-5):</label>
+                <input type="range" id="columns-slider" min="1" max="5" value="3">
+            </div>
+            <div class="input-group">
+                <label for="size-slider">GIF Size (100-500px):</label>
+                <input type="range" id="size-slider" min="100" max="500" value="150">
+            </div>
+        </div>
+        <div id="feed-container" class="grid"></div>
+        <div id="non-media-list">
+            <h2>Non-Media Posts</h2>
+            <ul id="non-media-items"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
